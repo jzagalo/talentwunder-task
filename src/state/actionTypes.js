@@ -1,0 +1,2 @@
+export const LOAD_TOP_STORIES = "LOAD_TOP_STORIES"
+export const TOGGLE_STORY = "TOGGLE_STORY"

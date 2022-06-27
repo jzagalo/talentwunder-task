@@ -1,10 +1,18 @@
+import { LOAD_TOP_STORIES } from "./actionTypes"
 // Find Hacker News API here
 // https://github.com/HackerNews/API
 
 // TODO fetch ask stories (https://hacker-news.firebaseio.com/v0/askstories.json)
-export function loadTopstories() {
-    return async (dispatch, getState) => {};
+export function loadTopStories() {
+    return (dispatch) => {       
+        fetch("https://hacker-news.firebaseio.com/v0/askstories.json") 
+        .then(res => res.json())
+        .then(data => {  
+            console.log(data)          
+            dispatch({ type: LOAD_TOP_STORIES, payload:{ data } })   
+        })
+        .catch(err => console.log('Request Failed', err))      
+    };
 }
 
-// TODO fetch item by id (https://hacker-news.firebaseio.com/v0/item/<itemId>.json)
-function fetchStoryById(id) {}
+
