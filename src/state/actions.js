@@ -1,4 +1,4 @@
-import { LOAD_TOP_STORIES } from "./actionTypes"
+import { LOAD_TOP_STORIES, TOGGLE_STORY } from "./actionTypes"
 // Find Hacker News API here
 // https://github.com/HackerNews/API
 
@@ -13,6 +13,13 @@ export function loadTopStories() {
         })
         .catch(err => console.log('Request Failed', err))      
     };
+}
+
+export function toggleStory(storyId){
+    return{
+        type: TOGGLE_STORY,
+        payload: { storyId }
+    }
 }
 
 
