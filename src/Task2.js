@@ -30,24 +30,31 @@ export function updateQuality(products) {
           products[i].quality = products[i].quality - 2;
           products[i].sellIn = products[i].sellIn - 1;
         }
+      
+        if (
+          products[i].type == "NORMAL" &&
+          products[i].sellIn > 0 && 
+          products[i].isSecondHand === undefined
+        ) {          
+          if(products[i].quality == 0){
+             products[i].quality = 0;
+             products[i].sellIn = products[i].sellIn - 1;
+          } 
+          
+          if(products[i].quality > 0){
+             products[i].quality = products[i].quality - 1;
+             products[i].sellIn = products[i].sellIn - 1;
+          }         
+        } 
 
         if (
           products[i].type == "NORMAL" &&
-          products[i].sellIn > 0 &&
-          products[i].quality == 0
-        ) {
-          products[i].quality = 0;
-          products[i].sellIn = products[i].sellIn - 1;
-        } else {
-          if (
-            products[i].type == "NORMAL" &&
-            products[i].sellIn > 0 &&
-            products[i].quality > 0
-          ) {
-            products[i].quality = products[i].quality - 1;
-            products[i].sellIn = products[i].sellIn - 1;
-          }
-        }
+          products[i].sellIn >= 0 &&  
+          products[i].quality >= 1 && 
+          products[i].isSecondHand !== undefined
+        ) {          
+          products[i].quality = products[i].quality - 2;
+        } 
       }
     }
 
